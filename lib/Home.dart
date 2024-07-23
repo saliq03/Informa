@@ -12,14 +12,20 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
  NewsModel mynews=NewsModel();
+
+ @override
+  void initState() {
+    FetchNews();
+    super.initState();
+  }
+
  FetchNews()async{
-   final Url="https://newsapi.org/v2/everything?q=tesla&from=2024-06-23&sortBy=publishedAt&apiKey=f83fce02237041b5a398ac454f57d936";
+   final Url="https://newsapi.org/v2/everything?q=buisness&from=2024-06-23&sortBy=publishedAt&apiKey=f83fce02237041b5a398ac454f57d936";
    var response=await http.get(Uri.parse(Url));
    if(response.statusCode==200){
     var result =jsonDecode(response.body);
     mynews=NewsModel.fromJson(result);
     return NewsModel.fromJson(result);
-
 
    }
    else{
